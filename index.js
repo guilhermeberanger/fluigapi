@@ -9,7 +9,6 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json())
 app.use('/', express.static('public'))
 
-/*
 app.post('/', urlencodedParser, async (req, res) => {
     try {
         const data = {
@@ -38,7 +37,7 @@ app.post('/', urlencodedParser, async (req, res) => {
     }
 
 });
-*/
+
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log(`App.Listen ->  ${port}`)
