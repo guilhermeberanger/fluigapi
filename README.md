@@ -11,6 +11,12 @@
  - *Body Parser*
  - *OAuth1*
 
+## Front-End
+ - *Html5*
+ - *CSS3*
+ - *BootStrap*
+ - *Jquery*
+
 ## Autor
   Guilherme Beranger<br>
   Linkedin:
