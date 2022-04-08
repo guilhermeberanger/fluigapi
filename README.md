@@ -8,7 +8,7 @@
 ## Back-End
  - *Node.js*
  - *Express*
- - *Axios*
+ - *Body Parser*
  - *OAuth1*
 
 ## Autor
