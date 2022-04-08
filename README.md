@@ -12,16 +12,16 @@
  - *OAuth1*
 
 ## Autor
-  Guilherme Beranger
+  Guilherme Beranger<br>
   Linkedin:
   - https://www.linkedin.com/in/guilherme-santos-beranger-4578a0161/
 
 ## Empresa:
-  Grupo TB
+  Grupo TB<br>
  Linkedin:
   - https://www.linkedin.com/company/grupotb/
 
 ## Hospedagem:
-  Hospedagem via Heroku
-  Lin:
+  Hospedagem via Heroku<br>
+  Link:
    - https://produtocad.herokuapp.com/
