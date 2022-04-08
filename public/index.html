@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Adicionando Javascript -->
+  <script src="index.js"></script>
+  <script type="text/javascript" src="filterDynamics.js"></script>
+  <script type="text/javascript" src="filterGrupo.js"></script>
+  <script type="text/javascript" src="selectDinamico.js"></script>
+  <script type="text/javascript" src="selectDinamico2.js"></script>
+  <!-- Adicionando JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!--===============================================================================================-->
+
+  <title>Grupo TB</title>
+</head>
+
+<body>
+
+
+  <div class="content">
+    <div class="container">
+      <div class="row align-items-stretch no-gutters contact-wrap">
+        <div class="col-md-8">
+          <div class="form h-100">
+            <h3>CADASTROS</h3>
+            <form role="form" id="myForm" name="myForm" action="http://127.0.0.1:8000/" method="POST">
+              <div class="panel panel-primary">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label id="nomeSolicitanteLabel">Nome do Solicitante</label> <input type="text"
+                        class="form-control" id="nomeSolicitante" name="nomeSolicitante" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label id="emailSolicitanteLabel">E-mail do Solicitante</label> <input type="email"
+                        class="form-control" id="emailSolicitante" name="emailSolicitante"
+                        placeholder="email@grupotb.com.br" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label id="descricaoProdutoLabel">Descrição do Produto</label> <input type="text"
+                        class="form-control" id="descricaoProduto" name="descricaoProduto" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label id="especificacaoProdutoLabel">Especificação do
+                        Produto</label> <input type="text" class="form-control" id="especificacaoProduto"
+                        name="especificacaoProduto" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="inputs">
+                        <label id="unidadeMedidaLabel">Unidade de Medida</label> <select class="custom-select"
+                          id="unidadeMedida" name="unidadeMedida" required>
+                          <option>Selecione</option>
+                          <option value="peca" id="peca">Peça</option>
+                          <option value="unidade" id="unidade">Unidade</option>
+                          <option value="kit" id="kit">Kit</option>
+                          <option value="litro" id="litro">Litro</option>
+                          <option value="metro" id="metro">Metro</option>
+                          <option value="kg" id="kg">KG</option>
+                          <option value="galao" id="galao">Galão</option>
+                          <option value="fardo" id="fardo">Fardo</option>
+                          <option value="caixa" id="caixa">Caixa</option>
+                          <option value="pacote" id="pacote">Pacote</option>
+                          <option value="lata" id="lata">Lata</option>
+                          <option value="balde" id="balde">Balde</option>
+                          <option value="par" id="par">Par</option>
+                          <option value="conjunto" id="conjunto">Conjunto</option>
+                          <option value="rolo" id="rolo">Rolo</option>
+                          <option value="mcubico" id="mcubico">Metro Cúbico M³</option>
+                          <option value="grama" id="grama">Grama</option>
+                          <option value="saco" id="saco">Saco</option>
+                          <option value="tambor" id="tambor">Tambor</option>
+                          <option value="tonelada" id="tonelada">Tonelada</option>
+                          <option value="mquadrado" id="mquadrado">Metros Quadrado M²</option>
+                          <option value="frasco" id="frasco">Frasco</option>
+                          <option value="cento" id="cento">Cento</option>
+                          <option value="barra" id="barra">Barra</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="inputs">
+                        <label id="vlrativoLabel">Valor R$ 1.250</label> <select class="custom-select" id="vlrativo"
+                          name="vlrativo" required>
+                          <option value="1" id="1">SIM</option>
+                          <option value="2" id="2">NÃO</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label id="ncmLabel">NCM</label> <input type="text" class="form-control" id="ncm" name="ncm"
+                        placeholder="Apenas Números" >
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="inputs">
+                        <label id="tipoLabel">Tipo Produto</label> <select class="custom-select" id="tipo" name="tipo"
+                          onchange="filterTipo()" required>
+                          <option>Selecione</option>
+                          <option value="veicular" id="veicular" data="Veicular">Veicular</option>
+                          <option value="combustiveisTipo" id="combustiveisTipo">Combustíveis</option>
+                          <option value="limpeza" id="limpeza">Limpeza</option>
+                          <option value="uniformesEpi" id="uniformesEpi">Uniformes
+                            e EPI'S</option>
+                          <option value="epcs" id="epcs">EPC'S</option>
+                          <option value="maquinasEquipFerramentas" id="maquinasEquipFerramentas">Máquinas,
+                            Equipamentos
+                            e Ferramentas</option>
+                          <option value="copaCozinha" id="copaCozinha">Copa e
+                            Cozinha</option>
+                          <option value="matEscritorio" id="matEscritorio">Materiais
+                            de Escritório</option>
+                          <option value="obraCivilManutencao" id="obraCivilManutencao">Obra
+                            Civil e Manutenção</option>
+                          <option value="comunicacao" id="comunicacao">Comunicação</option>
+                          <option value="medicamentos" id="medicamentos">Medicamentos</option>
+                          <option value="locacao" id="locacao">Locação</option>
+                          <option value="brindes" id="brindes">Brindes</option>
+                          <option value="seguros" id="seguros">Seguros</option>
+                          <option value="servicos" id="servicos">Serviços</option>
+                          <option value="gerais" id="gerais">Gerais</option>
+                          <option value="juridicas" id="juridicas">Juridicas</option>
+                          <option value="reembolso" id="reembolso">Reembolso</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="inputs">
+                        <label id="grupoLabel">Grupo</label> <select class="custom-select" id="grupo" name="grupo"
+                          onchange="filter()" required>
+                          <option>Selecione</option>
+                          <option value="Auto_Pecas" id="Auto_Pecas" >Auto Peças</option>
+                          <option value="combustiveis" id="combustiveis">Combustíveis
+                            e Lubrificantes</option>
+                          <option value="Implementos_Pecas_Veiculos" id="Implementos_Pecas_Veiculos">Implementos e
+                            Peças
+                            para Adaptação de Veículos</option>
+                          <option value="Locacao_Veiculos" id="Locacao_Veiculos">Locação
+                            de Veículos</option>
+                          <option value="pneus" id="pneus">Pneus</option>
+                          <option value="Seguro_Veiculos" id="Seguro_Veiculos">Seguro
+                            de Veículos</option>
+                          <option value="Servicos_Veiculos" id="Servicos_Veiculos">Serviços
+                            de Veiculos</option>
+                          <option value="veiculos" id="veiculos">Veículos</option>
+                          <option value="Material_Limpeza" id="Material_Limpeza">Material
+                            de Limpeza</option>
+                          <option value="uniformes" id="uniformes">Uniformes</option>
+                          <option value="epi" id="epi">EPI</option>
+                          <option value="epc" id="epc">EPC</option>
+                          <option value="Maquinas_Equipamentos" id="Maquinas_Equipamentos">Maquinas
+                            e Equipamentos</option>
+                          <option value="ferramentas" id="ferramentas">Ferramentas</option>
+                          <option value="Material_Copa_Cozinha" id="Material_Copa_Cozinha">Material
+                            de Copa e Cozinha</option>
+                          <option value="Material_Escritorio" id="Material_Escritorio">Materia
+                            de Escritório</option>
+                          <option value="Material_Obra_Civil_Manutenção" id="Material_Obra_Civil_Manutenção">
+                            Material de Obra
+                            Civil e Manutenção</option>
+                          <option value="Mat_Sinalizacao_Comunicacao" id="Mat_Sinalizacao_Comunicacao">
+                            Material de
+                            Sinalização e Comunicação</option>
+                          <option value="Material_Grafico_Institucional" id="Material_Grafico_Institucional">
+                            Material Gráfico
+                            Institucional</option>
+                          <option value="Medicamentos_Grupo" id="Medicamentos_Grupo">Medicamentos</option>
+                          <option value="Locacao_Grupo" id="Locacao_Grupo">Locação</option>
+                          <option value="Brindes_Clientes" id="Brindes_Clientes">Brindes
+                            para Clientes</option>
+                          <option value="moveis" id="moveis">Móveis</option>
+                          <option value="Seguros_Grupo" id="Seguros_Grupo">Seguros</option>
+                          <option value="Servicos_Pessoal" id="Servicos_Pessoal">Serviços
+                            de Pessoal</option>
+                          <option value="Despesas_Viagem" id="Despesas_Viagem">Despesas
+                            de Viagens</option>
+                          <option value="Despesas_Gerais" id="Despesas_Gerais">Despesas
+                            Gerais</option>
+                          <option value="Serv_Tecnicos_Especializados" id="Serv_Tecnicos_Especializados">
+                            Serviços Ténicos
+                            Especializados</option>
+                          <option value="Material_Automotivo" id="Material_Automotivo">Material
+                            Automotivo</option>
+                          <option value="Despesas_Juridicas" id="Despesas_Juridicas">Despesas
+                            Juridicas</option>
+                          <option value="Reembolso_Grupo" id="Reembolso_Grupo">Reembolso</option>
+                          <option value="jardinagem" id="jardinagem">Jardinagem</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="inputs">
+                        <label id="subGrupoLabel">Sub Grupo</label> <select class="custom-select" id="subGrupo"
+                          name="subGrupo" required>
+                          <option>Selecione</option>
+                          <option value="Auto_Pecas_Sub" id="Auto_Pecas_Sub">Auto
+                            Peças</option>
+                          <option value="Materiais_Mecanica" id="Materiais_Mecanica">Materiais
+                            de Mecânica</option>
+                          <option value="Parafusos_Diversos" id="Parafusos_Diversos">Parafusos
+                            e Diversos</option>
+                          <option value="diesel" id="diesel">Diesel</option>
+                          <option value="Energia_Eletrica" id="Energia_Eletrica">Energia
+                            Elétrica</option>
+                          <option value="etanol" id="etanol">Etanol</option>
+                          <option value="gasolina" id="gasolina">Gasolina</option>
+                          <option value="Oleos_Lubrificantes_Aditivos" id="Oleos_Lubrificantes_Aditivos">Óleos,
+                            Lubrificantes
+                            e Aditivos</option>
+                          <option value="carretas" id="carretas">Carretas</option>
+                          <option value="carrocerias" id="carrocerias">Carrocerias</option>
+                          <option value="Compactador_Lixo" id="Compactador_Lixo">Compactador
+                            de Lixo</option>
+                          <option value="Implementos_Agro" id="Implementos_Agro">Implementos
+                            Agroindustriais</option>
+                          <option value="Implementos_Veiculos" id="Implementos_Veiculos">Implementos,
+                            Peças, Componentes e Materiais para Adapt. de Veículos</option>
+                          <option value="Locacao_Veiculos_SubGrupo" id="Locacao_Veiculos_SubGrupo">Locação
+                            de Veículos</option>
+                          <option value="Pneus_SubGrupo" id="Pneus_SubGrupo">Pneus</option>
+                          <option value="Seguro_Veiculos_SubGrupo" id="Seguro_Veiculos_SubGrupo">Seguro
+                            de Veículos</option>
+                          <option value="Servicos_Veiculos_SubGrupo" id="Servicos_Veiculos_SubGrupo">Serviços
+                            de Veículos</option>
+                          <option value="Veiculos_Leves" id="Veiculos_Leves">Veículos
+                            Leves</option>
+                          <option value="Veiculos_SUV" id="Veiculos_SUV">Veículos
+                            SUV</option>
+                          <option value="Veiculos_Utilitarios" id="Veiculos_Utilitarios">Utilitários</option>
+                          <option value="Caminhoes_Leves" id="Caminhoes_Leves">Caminhões
+                            Leves</option>
+                          <option value="Caminhoes_Medios" id="Caminhoes_Medios">Caminhões
+                            Médios</option>
+                          <option value="Caminhoes_Pesados" id="Caminhoes_Pesados">Caminhões
+                            Pesados</option>
+                          <option value="pickup" id="pickup">Caminhonetes Pick
+                            up</option>
+                          <option value="Motos_Triciclos" id="Motos_Triciclos">Motos
+                            e Triciclos</option>
+                          <option value="Micro_Onibus" id="Micro_Onibus">Ônibus
+                            e Microônibus</option>
+                          <option value="Cavalo_Mecanico" id="Cavalo_Mecanico">Cavalos
+                            Mecânicos</option>
+                          <option value="reboques" id="reboques">Reboques</option>
+                          <option value="empilhadeiras" id="empilhadeiras">Empilhadeiras</option>
+                          <option value="tratores" id="tratores">Tratores</option>
+                          <option value="Equipamento_Veiculares" id="Equipamento_Veiculares">Equipamentos
+                            Veiculares</option>
+                          <option value="Material_Descartavel" id="Material_Descartavel">Material
+                            Descartável</option>
+                          <option value="Mat_Tratamento_Piso" id="Mat_Tratamento_Piso">Material
+                            para Tratamento de Piso</option>
+                          <option value="Quimicos_Desinfetantes" id="Quimicos_Desinfetantes">Quimicos e
+                            Desinfetantes</option>
+                          <option value="Saco_Lixo" id="Saco_Lixo">Sacos de Lixo</option>
+                          <option value="Utensilios_Limpeza" id="Utensilios_Limpeza">Utensílios
+                            de Limpeza</option>
+                          <option value="Calcado_Uniforme" id="Calcado_Uniforme">Calçado
+                            de Uniforme</option>
+                          <option value="Vestimenta_Uniforme" id="Vestimenta_Uniforme">Vestimenta
+                            de Uniforme</option>
+                          <option value="Calcado_Seguranca" id="Calcado_Seguranca">EPI
+                            - Calçado de Segurança</option>
+                          <option value="Cabeca_Face" id="Cabeca_Face">EPI -
+                            Proteção de Cabeça e Face</option>
+                          <option value="Mao_Pele" id="Mao_Pele">EPI - Proteção de
+                            Mão e Pele</option>
+                          <option value="Vestimenta_Protecao" id="Vestimenta_Protecao">EPI
+                            - Vestimentas de Proteção</option>
+                          <option value="Maquinas_Equipamentos_Limpeza" id="Maquinas_Equipamentos_Limpeza">Máquinas
+                            e Equipamentos de Limpeza</option>
+                          <option value="Maq_Equipamentos_Oficina_Veiculos" id="Maq_Equipamentos_Oficina_Veiculos">Máquinas e
+                            Equipamentos
+                            para Oficina de Veículos</option>
+                          <option value="Maq_Equipamentos_Caracterizacao_Veiculos" id="Maq_Equipamentos_Caracterizacao_Veiculos">Máquinas e
+                            Equipamentos
+                            para Caracterização e Veículos</option>
+                          <option value="Maq_Equipamentos_Adaptacao_Veiculos" id="Maq_Equipamentos_Adaptacao_Veiculos">Máquinas e
+                            Equipamentos para Adaptação de Veículos</option>
+                          <option value="Maquinas_Equipamentos_TI" id="Maquinas_Equipamentos_TI">Máquinas e
+                            Equipamentos de TI / Telecon</option>
+                          <option value="Perifericos_TI" id="Perifericos_TI">Periféricos
+                            de T.I</option>
+                          <option value="Maquinas_Equipamentos_Gerais" id="Maquinas_Equipamentos_Gerais">Máquinas
+                            e Equipamentos Gerais</option>
+                          <option value="Componentes_Ferramentas" id="Componentes_Ferramentas">Componentes
+                            para Equipamentos e Ferramentas</option>
+                          <option value="Ferramentas_Eletricas" id="Ferramentas_Eletricas">Ferramentas
+                            Elétricas</option>
+                          <option value="Instrumentos_Medicao" id="Instrumentos_Medicao">Instrumentos
+                            de Medição</option>
+                          <option value="Copa_Cozinha_SubGrupo" id="Copa_Cozinha_SubGrupo">Copa
+                            e Cozinha</option>
+                          <option value="Utensilios_Copa_Cozinha" id="Utensilios_Copa_Cozinha">Utínsilios
+                            de Copa e Cozinha</option>
+                          <option value="Material_Escritorio_SubGrupo" id="Material_Escritorio_SubGrupo">Material
+                            de Escritório</option>
+                          <option value="Material_Informatica" id="Material_Informatica">Material
+                            de Informática</option>
+                          <option value="Material_Construcao_Civil" id="Material_Construcao_Civil">Material
+                            de Construção Civil</option>
+                          <option value="Material_Eletrico" id="Material_Eletrico">Material
+                            Elétrico</option>
+                          <option value="Material_Hidraulico" id="Material_Hidraulico">Material
+                            Hidraulico</option>
+                          <option value="Material_Sinalizacao_Comunicacao" id="Material_Sinalizacao_Comunicacao">Material
+                            de Sinalização e Comunicação</option>
+                          <option value="Material_Grafico_Institucional_SubGrupo" id="Material_Grafico_Institucional_SubGrupo">Material
+                            Gráfico Institucional</option>
+                          <option value="Material_Tratamento_Piso" id="Material_Tratamento_Piso">Material de
+                            Primeiros Socorros e Medicamentos</option>
+                          <option value="Locacao_Imoveis" id="Locacao_Imoveis">Locação
+                            de Imóveis</option>
+                          <option value="Locacao_Maquinas_Equipamentos" id="Locacao_Maquinas_Equipamentos">Locação
+                            de Máquinas, Equipamentos e Est. de Apoio</option>
+                          <option value="Locacao_Patio_Estacionamentos" id="Locacao_Patio_Estacionamentos">Locação
+                            de Pátio para guarda e Estacionamento de Veículos</option>
+                          <option value="Brindes_Clientes_SubGrupo" id="Brindes_Clientes_SubGrupo">Brindes
+                            para Clientes</option>
+                          <option value="Seguros_SubGrupo" id="Seguros_SubGrupo">Seguros</option>
+                          <option value="Servicos_Pessoal_SubGrupo" id="Servicos_Pessoal_SubGrupo">Serviços
+                            de Pessoal</option>
+                          <option value="Despesas_Viagens" id="Despesas_Viagens">Despesas de
+                            Viagens</option>
+                          <option value="Despesas_Administrativas" id="Despesas_Administrativas">Despesas
+                            Administrativas</option>
+                          <option value="Servicos_Tecnicos" id="Servicos_Tecnicos">Serviços
+                            Técnicos Especializados</option>
+                          <option value="Manutencao_Concertos" id="Manutencao_Concertos">Manutenção
+                            e Consertos</option>
+                          <option value="Material_Borracharia" id="Material_Borracharia">Material
+                            de Borracharia</option>
+                          <option value="Material_Pintura_Automotiva" id="Material_Pintura_Automotiva">Material
+                            de Pintura Automotiva</option>
+                          <option value="Material_Hidraulico_Automotivo" id="Material_Hidraulico_Automotivo">Material
+                            Hidraulico Automotivo</option>
+                          <option value="suspencao" id="suspencao">Suspensão</option>
+                          <option value="Despesas_Juridicas_SubGrupo" id="Despesas_Juridicas_SubGrupo">Despesas
+                            Jurídicas</option>
+                          <option value="Reembolso_SubGrupo" id="Reembolso_SubGrupo">Reembolso</option>
+                          <option value="Material_Jardinagem" id="Material_Jardinagem">Materiais
+                            de Jardinagem</option>
+                          <option value="Cotas_Consorcio" id="Cotas_Consorcio">Cotas
+                            de Consorcios</option>
+                          <option value="gas" id="gas">Gas</option>
+                          <option value="Servicos_Administrativos" id="Servicos_Administrativos">Serviços
+                            Administrativos</option>
+                          <option value="Servicos_Manutencao_Predial" id="Servicos_Manutencao_Predial">Serviços
+                            de Manutenção Predial</option>
+                          <option value="Servico_TI" id="Servico_TI">Serviços de TI</option>
+                          <option value="Servicos_Transporte" id="Servicos_Transporte">Serviços de
+                            Transporte</option>
+                          <option value="Servicos_Prediais" id="Servicos_Prediais">Serviços
+                            Prediais</option>
+                          <option value="Componentes_Maquinas_Equipamentos" id="Componentes_Maquinas_Equipamentos">Componentes
+                            para Máquinas e Equipamentos</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="inputs">
+                  <br>
+                  <div class="col-md-12">
+                    <input type="submit" value="Enviar" class="btn btn-primary rounded-0 py-2 px-4">
+                    <span class="submitting"></span>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div id="form-message-warning mt-4"></div>
+            <div id="form-message-success">
+              Your message was sent, thank you!
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-4">
+          <div class="contact-info h-100">
+            <h3>Informações Gerais</h3>
+            <p class="mb-5"></p>Prazo para Efetivação do cadastro: 24hrs</p>
+            <ul class="list-unstyled">
+              <li class="d-flex">
+                <span class="wrap-icon icon-users mr-3"></span>
+                <span class="text">Equipe Planejamento e Controle</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-phone mr-3"></span>
+                <span class="text">Ramal: 551</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-envelope mr-3"></span>
+                <span class="text">cadastros.pco@grupotb.com.br</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Guia de Estilos -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
