@@ -2,14 +2,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const api = require('./config');
-const { response } = require('express');
 require('dotenv').config();
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(bodyParser.json())
-app.use('/home', express.static('public'))
+app.use('/', express.static('public'))
 
+/*
 app.post('/', urlencodedParser, async (req, res) => {
     try {
         const data = {
@@ -38,7 +38,7 @@ app.post('/', urlencodedParser, async (req, res) => {
     }
 
 });
-
+*/
 const port = 8000
 app.listen(port, () => {
     console.log(`App.Listen ->  ${port}`)
