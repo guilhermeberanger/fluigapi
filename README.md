@@ -19,13 +19,9 @@
 </div><br/>
 
 ## Autor
-  Guilherme Beranger<br>
-<br>
  [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/guilherme-santos-beranger-4578a0161/)
  
 ## Empresa:
-  Grupo TB<br>
-<br>
  [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/grupotb/)
 
 ## Hospedagem:
