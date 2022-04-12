@@ -1,13 +1,17 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-const api = require('./config');
+const api = require('./app/config');
+const path = require('path');
 require('dotenv').config();
 
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const urlencodedParser = express.urlencoded({ extended: false });
 
-app.use(bodyParser.json())
-app.use('/', express.static('public'))
+app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, '/public')))
+
+app.get('/', (req, res) => {
+    res.render('produtos', { sucess: '' })
+})
 
 app.post('/', urlencodedParser, async (req, res) => {
     try {
@@ -29,8 +33,10 @@ app.post('/', urlencodedParser, async (req, res) => {
                 "subGrupo": req.body.subGrupo
             }
         }
+
         const login = await api(data, "POST")
-        res.json(login)
+        const response = login.processInstanceId
+        res.render('produtos', { sucess: `Cadastro Solicitado: ${response}` })
     } catch (error) {
         console.error('error', error)
         res.json(error)
@@ -38,7 +44,7 @@ app.post('/', urlencodedParser, async (req, res) => {
 
 });
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`App.Listen ->  ${port}`)
 })

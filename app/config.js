@@ -1,7 +1,8 @@
 const rp = require('request-promise-native');
 require('dotenv').config();
 
-const api = (body, method, oauth) =>{
+const api = (body, method, oauth) => {
+
     const CONSUMER_KEY = process.env.CONSUMER_KEY
     const CONSUMER_SECRET = process.env.CONSUMER_SECRET
     const TOKEN = process.env.TOKEN
@@ -11,7 +12,7 @@ const api = (body, method, oauth) =>{
         method: method,
         body: body,
         url: url,
-        oauth : oauth = {
+        oauth: oauth = {
             consumer_key: CONSUMER_KEY,
             consumer_secret: CONSUMER_SECRET,
             token: TOKEN,

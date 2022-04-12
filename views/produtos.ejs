@@ -38,8 +38,13 @@
       <div class="row align-items-stretch no-gutters contact-wrap">
         <div class="col-md-8">
           <div class="form h-100">
+            <% if(sucess !=''){ %> 
+            <div class="alert alert-success">
+              <strong>Success!</strong> <%= sucess %>
+            </div>
+            <% } %>
             <h3>CADASTROS</h3>
-            <form role="form" id="myForm" name="myForm" action="https://produtocad.herokuapp.com/" method="POST">
+            <form role="form" id="myForm" name="myForm" action="http://172.16.32.182:3000" method="POST">
               <div class="panel panel-primary">
                 <div class="panel-body">
                   <div class="row">
@@ -108,7 +113,7 @@
                     </div>
                     <div class="form-group col-md-3">
                       <label id="ncmLabel">NCM</label> <input type="text" class="form-control" id="ncm" name="ncm"
-                        placeholder="Apenas Números" >
+                        placeholder="Apenas Números">
                     </div>
                   </div>
                   <div class="row">
@@ -149,7 +154,7 @@
                         <label id="grupoLabel">Grupo</label> <select class="custom-select" id="grupo" name="grupo"
                           onchange="filter()" required>
                           <option>Selecione</option>
-                          <option value="Auto_Pecas" id="Auto_Pecas" >Auto Peças</option>
+                          <option value="Auto_Pecas" id="Auto_Pecas">Auto Peças</option>
                           <option value="combustiveis" id="combustiveis">Combustíveis
                             e Lubrificantes</option>
                           <option value="Implementos_Pecas_Veiculos" id="Implementos_Pecas_Veiculos">Implementos e
@@ -289,13 +294,16 @@
                             - Vestimentas de Proteção</option>
                           <option value="Maquinas_Equipamentos_Limpeza" id="Maquinas_Equipamentos_Limpeza">Máquinas
                             e Equipamentos de Limpeza</option>
-                          <option value="Maq_Equipamentos_Oficina_Veiculos" id="Maq_Equipamentos_Oficina_Veiculos">Máquinas e
+                          <option value="Maq_Equipamentos_Oficina_Veiculos" id="Maq_Equipamentos_Oficina_Veiculos">
+                            Máquinas e
                             Equipamentos
                             para Oficina de Veículos</option>
-                          <option value="Maq_Equipamentos_Caracterizacao_Veiculos" id="Maq_Equipamentos_Caracterizacao_Veiculos">Máquinas e
+                          <option value="Maq_Equipamentos_Caracterizacao_Veiculos"
+                            id="Maq_Equipamentos_Caracterizacao_Veiculos">Máquinas e
                             Equipamentos
                             para Caracterização e Veículos</option>
-                          <option value="Maq_Equipamentos_Adaptacao_Veiculos" id="Maq_Equipamentos_Adaptacao_Veiculos">Máquinas e
+                          <option value="Maq_Equipamentos_Adaptacao_Veiculos" id="Maq_Equipamentos_Adaptacao_Veiculos">
+                            Máquinas e
                             Equipamentos para Adaptação de Veículos</option>
                           <option value="Maquinas_Equipamentos_TI" id="Maquinas_Equipamentos_TI">Máquinas e
                             Equipamentos de TI / Telecon</option>
@@ -323,9 +331,11 @@
                             Elétrico</option>
                           <option value="Material_Hidraulico" id="Material_Hidraulico">Material
                             Hidraulico</option>
-                          <option value="Material_Sinalizacao_Comunicacao" id="Material_Sinalizacao_Comunicacao">Material
+                          <option value="Material_Sinalizacao_Comunicacao" id="Material_Sinalizacao_Comunicacao">
+                            Material
                             de Sinalização e Comunicação</option>
-                          <option value="Material_Grafico_Institucional_SubGrupo" id="Material_Grafico_Institucional_SubGrupo">Material
+                          <option value="Material_Grafico_Institucional_SubGrupo"
+                            id="Material_Grafico_Institucional_SubGrupo">Material
                             Gráfico Institucional</option>
                           <option value="Material_Tratamento_Piso" id="Material_Tratamento_Piso">Material de
                             Primeiros Socorros e Medicamentos</option>
@@ -372,7 +382,8 @@
                             Transporte</option>
                           <option value="Servicos_Prediais" id="Servicos_Prediais">Serviços
                             Prediais</option>
-                          <option value="Componentes_Maquinas_Equipamentos" id="Componentes_Maquinas_Equipamentos">Componentes
+                          <option value="Componentes_Maquinas_Equipamentos" id="Componentes_Maquinas_Equipamentos">
+                            Componentes
                             para Máquinas e Equipamentos</option>
                         </select>
                       </div>
@@ -422,7 +433,7 @@
     </div>
   </div>
 
-   <!-- Guia de Estilos -->
+  <!-- Guia de Estilos -->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
