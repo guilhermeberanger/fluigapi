@@ -10,8 +10,12 @@ app.set('view engine', 'ejs')
 app.set('viwes' , './views')
 app.use(express.static(path.join(__dirname, '/public')))
 
-app.get('/', (req, res) => {
+app.get('/produtos', (req, res) => {
     res.render('produtos', { sucess: '' })
+})
+
+app.get('/', (req, res) => {
+    res.render('index', { sucess: '' })
 })
 
 app.post('/', urlencodedParser, async (req, res) => {
