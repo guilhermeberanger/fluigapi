@@ -9,7 +9,6 @@
 
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -34,23 +33,29 @@
         <div class="col-md-8">
           <div class="form h-100">
             <h3>PORTAL DE CADASTROS</h3>
-            <div class="panel panel-primary">
+            <div class="panel panel-primary"></div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input class="form-control" placeholder="Selecione abaixo o tipo de Cadastro">
+              </div>
             </div>
             <div class="row">
               <div class="inputs">
                 <br>
                 <div class="col-md-12">
-                  <button type="submit" value="PRODUTOS" class="btn btn-primary rounded-0 py-2 px-4"
+                  <button type="submit" class="btn btn-primary rounded-0 py-2 px-4"
                     onclick='cadastroProduto();'>PRODUTOS</button>
                   <span class="submitting"></span>
                 </div>
               </div>
-            </div>
-
-
-            <div id="form-message-warning mt-4"></div>
-            <div id="form-message-success">
-              Your message was sent, thank you!
+              <div class="inputs">
+                <br>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-primary rounded-0 py-2 px-4"
+                    onclick='cadastroProduto();'>FORNECEDORES</button>
+                  <span class="submitting"></span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -88,6 +93,9 @@
   <script>
     function cadastroProduto() {
       location.href = "https://produtocad.herokuapp.com/produtos"
+    }
+    function cadastroProduto() {
+      location.href = "https://produtocad.herokuapp.com/fornecedor"
     }
   </script>
 

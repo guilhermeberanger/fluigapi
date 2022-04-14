@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Adicionando JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="consultaReceitaWS.js"></script>
+  <script type="text/javascript" src="selectDinamicoForn.js"></script>
+  <link type="text/javascript" href="masks.js">
+  <!--===============================================================================================-->
+
+  <title>Grupo TB</title>
+</head>
+
+<body>
+
+
+  <div class="content">
+    <div class="container">
+      <div class="row align-items-stretch no-gutters contact-wrap">
+        <div class="col-md-8">
+          <div class="form h-100">
+            <h3>CADASTRO FORNECEDORES</h3>
+            <div class="panel panel-primary"></div>
+            <form class="form-role" method="POST" action="https://produtocad.herokuapp.com/fornecedores">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label id="nomeSolicitanteLabel">Nome do Solicitante</label> <input type="text" class="form-control"
+                    id="nomeSolicitante" name="nomeSolicitante" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label id="emailSolicitanteLabel">E-mail do Solicitante</label> <input type="email"
+                    class="form-control" id="emailSolicitante" name="emailSolicitante"
+                    placeholder="email@grupotb.com.br" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <label id="tipoCadastroLabel">Tipo</label> <select class="form-control" id="tipoCadastro"
+                    name="tipoCadastro">
+                    <option value="0" id="0">Selecione</option>
+                    <option value="Pessoa Juridica" id="Pessoa Juridica">Pessoa
+                      Física</option>
+                    <option value="Pessoa Fisica" id="Pessoa Fisica">Pessoa
+                      Juridica</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label id="reembolsoLabel">Reembolso</label> <select class="form-control" id="reembolso"
+                    name="reembolso" onchange="selectDadosBancarios()">
+                    <option value="SIM" id="1">SIM</option>
+                    <option value="NÃO" id="2">NÃO</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label id="docNumerolabel">DOC. Nº</label> <input type="text" class="form-control" id="documento"
+                    name="documento" onblur="formatarCampo(this);">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-8">
+                  <label id="enderecoCompletoLabel">Endereço Completo</label> <input type="text" class="form-control"
+                    id="enderecoCompleto" name="enderecoCompleto" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label id="bairroLabel">Bairro</label> <input type="text" class="form-control" id="bairro"
+                    name="bairro" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <label id="estadoLabel">Estado</label> <input type="text" class="form-control" id="estado"
+                    name="estado" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label id="cidadeLabel">Cidade</label> <input type="text" class="form-control" id="cidade"
+                    name="cidade" readonly>
+                </div>
+
+                <div class="form-group col-md-3">
+                  <label id="cepLabel">CEP</label> <input type="text" class="form-control" id="cep" name="cep" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-1">
+                  <label id="dddLabel">DDD</label> <input type="text" class="form-control" id="ddd" name="ddd">
+                </div>
+                <div class="form-group col-md-3">
+                  <label id="telefoneLabel">Telefone</label> <input type="text" class="form-control" id="telefone"
+                    name="telefone">
+                </div>
+                <div class="form-group col-md-3">
+                  <label id="inscricaoMunicipalLabel">Insc Mun.</label> <input type="text" class="form-control"
+                    id="inscricaoMunicipal" name="inscricaoMunicipal">
+                </div>
+                <div class="form-group col-md-4">
+                  <label id="inscricaoEstadualLabel">Insc Est.</label> <input type="text" class="form-control"
+                    id="inscricaoEstadual" name="inscricaoEstadual">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label id="emailFornecedor">Email Fornecedor</label> <input type="email" class="form-control"
+                    id="emailFornecedor" name="emailFornecedor" placeholder="email@exemplo.com">
+                </div>
+                <div class="form-group col-md-3">
+                  <label id="contato">Contato</label> <input type="text" class="form-control" id="contato"
+                    name="contato">
+                </div>
+                <div class="form-group col-md-2">
+                  <label id="departamento">Depart.</label> <input type="text" class="form-control" id="departamento"
+                    name="departamento">
+                </div>
+                <div class="form-group col-md-2">
+                  <label id="cotacao">Cotação?</label> <select class="form-control" id="cotacao" name="cotacao">
+                    <option value="sim" id="simCota">SIM</option>
+                    <option value="nao" id="naoCota">NÃO</option>
+                  </select>
+                </div>
+              </div>
+              <div class="panel-body">
+                <h3>DADOS BANCÁRIOS</h3>
+                <div id="dadosBancarios">
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label id="formPagamento">Forma de Pagamento</label> <select class="form-control"
+                        id="formPagamento" name="formPagamento">
+                        <option value="boletoOutrosBancos" id="boletoOutrosBancos">Boleto
+                          Outros Bancos</option>
+                        <option value="boletoBancoItau" id="boletoBancoItau">Boleto
+                          Banco itau</option>
+                        <option value="transferenciaOutrosBancos" id="transferenciaOutrosBancos">
+                          Transferência Outros
+                          Bancos</option>
+                        <option value="transferenciaBancoItau" id="transferenciaBancoItau">Transferência
+                          Banco Itau</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label id="formPagamento">Banco</label> <select class="form-control" id="banco" name="banco"
+                        onchange="selectoutroBanco()">
+                        <option value="Itau" id="1">Banco Itau</option>
+                        <option value="Bradesco" id="2">Banco Bradesco</option>
+                        <option value="Brasil" id="3">Banco do Brasil</option>
+                        <option value="Santander" id="4">Banco Santander</option>
+                        <option value="Caixa" id="5">Caixa Economica Federal</option>
+                        <option value="Safra" id="6">Banco Safra</option>
+                        <option value="Inter" id="7">Banco Inter</option>
+                        <option value="Nubank" id="8">Nubank</option>
+                        <option value="Sicoob" id="9">Banco Sicoob</option>
+                        <option value="Outro" id="10">Outro</option>
+                      </select>
+                    </div>
+                    <div id="divOutroBanco" class="form-group col-md-2">
+                      <label id="jaTemCadastroLabel">Banco:</label> <input type="text" class="form-control"
+                        id="OutroBanco" name="OutroBanco">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-2">
+                      <label id="codAgencia">Agência</label> <input type="text" class="form-control" id="codAgencia"
+                        name="codAgencia">
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label id="codConta">C.Corrente</label> <input type="text" class="form-control" id="codConta"
+                        name="codConta">
+                    </div>
+                    <div class="form-group col-md-1">
+                      <label id="codDigito">Dígito</label> <input type="text" class="form-control" id="codDigito"
+                        name="codDigito">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <label id="categoria">Categoria</label> <select class="form-control" id="categoria"
+                      name="categoria">
+                      <option value="produto" id="produto">Produto</option>
+                      <option value="servicos" id="servicos">Serviços</option>
+                      <option value="produtoServico" id="produtoServico">Produtos
+                        e Serviços</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label id="segmento">Segmento</label> <input type="text" class="form-control" id="segmento"
+                      name="segmento">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="col-md-4">
+          <div class="contact-info h-100">
+            <h3>Informações Gerais</h3>
+            <p class="mb-5"></p>Prazo para Efetivação do cadastro: 24hrs</p>
+            <ul class="list-unstyled">
+              <li class="d-flex">
+                <span class="wrap-icon icon-users mr-3"></span>
+                <span class="text">Equipe Planejamento e Controle</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-phone mr-3"></span>
+                <span class="text">Ramal: 551</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-envelope mr-3"></span>
+                <span class="text">cadastros.pco@grupotb.com.br</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guia de Estilos -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!---SCRIPTS-->
+<script>
+  
+  function formatarCampo(documento) {
+    if (documento.value.length <= 11) {
+        documento.value = mascaraCpf(documento.value);
+    } else {
+        documento.value = mascaraCnpj(documento.value);
+    }
+}
+function retirarFormatacao(documento) {
+    documento.value = documento.value.replace(/(\.|\/|\-)/g,"");
+}
+function mascaraCpf(valor) {
+    return valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
+}
+function mascaraCnpj(valor) {
+    return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+}
+</script>
+</body>
+
+</html>
