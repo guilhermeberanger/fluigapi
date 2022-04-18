@@ -12,7 +12,7 @@ app.set('view engine', 'ejs')
 app.set('viwes' , './views')
 app.use(express.static(path.join(__dirname, '/public')))
 
-//Router's
+//Router
 app.use('/', router)
 
 const port = process.env.PORT || 3000;
