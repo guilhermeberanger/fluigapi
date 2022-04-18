@@ -35,6 +35,11 @@
       <div class="row align-items-stretch no-gutters contact-wrap">
         <div class="col-md-8">
           <div class="form h-100">
+            <% if(sucess !=''){ %>
+            <div class="alert alert-success">
+              <strong>Success!</strong> <%= sucess %>
+            </div>
+            <% } %>
             <h3>CADASTRO FORNECEDORES</h3>
             <div class="panel panel-primary"></div>
             <form class="form-role" method="POST" action="https://tbcadastros.herokuapp.com/fornecedores">
@@ -63,6 +68,7 @@
                 <div class="form-group col-md-2">
                   <label id="reembolsoLabel">Reembolso</label> <select class="form-control" id="reembolso"
                     name="reembolso" onchange="selectDadosBancarios()">
+                    <option value="0" id="0">SELECIONE</option>
                     <option value="SIM" id="1">SIM</option>
                     <option value="NÃO" id="2">NÃO</option>
                   </select>
@@ -119,17 +125,17 @@
                     id="emailFornecedor" name="emailFornecedor" placeholder="email@exemplo.com">
                 </div>
                 <div class="form-group col-md-3">
-                  <label id="contato">Contato</label> <input type="text" class="form-control" id="contato"
+                  <label id="contatoLabel">Contato</label> <input type="text" class="form-control" id="contato"
                     name="contato">
                 </div>
                 <div class="form-group col-md-2">
-                  <label id="departamento">Depart.</label> <input type="text" class="form-control" id="departamento"
-                    name="departamento">
+                  <label id="departamentoLabel">Depart.</label> <input type="text" class="form-control"
+                    id="departamento" name="departamento">
                 </div>
                 <div class="form-group col-md-2">
-                  <label id="cotacao">Cotação?</label> <select class="form-control" id="cotacao" name="cotacao">
-                    <option value="sim" id="simCota">SIM</option>
-                    <option value="nao" id="naoCota">NÃO</option>
+                  <label id="cotacaoLabel">Cotação?</label> <select class="form-control" id="cotacao" name="cotacao">
+                    <option value="SIM" id="simCota">SIM</option>
+                    <option value="NÃO" id="naoCota">NÃO</option>
                   </select>
                 </div>
               </div>
@@ -140,19 +146,19 @@
                     <div class="form-group col-md-4">
                       <label id="formPagamento">Forma de Pagamento</label> <select class="form-control"
                         id="formPagamento" name="formPagamento">
-                        <option value="boletoOutrosBancos" id="boletoOutrosBancos">Boleto
+                        <option value="Boleto Outros Bancos" id="boletoOutrosBancos">Boleto
                           Outros Bancos</option>
-                        <option value="boletoBancoItau" id="boletoBancoItau">Boleto
+                        <option value="Boleto Banco Itau" id="boletoBancoItau">Boleto
                           Banco itau</option>
-                        <option value="transferenciaOutrosBancos" id="transferenciaOutrosBancos">
+                        <option value="Transf. Outros Bancos" id="transferenciaOutrosBancos">
                           Transferência Outros
                           Bancos</option>
-                        <option value="transferenciaBancoItau" id="transferenciaBancoItau">Transferência
+                        <option value="Transf. Banco Itau" id="transferenciaBancoItau">Transferência
                           Banco Itau</option>
                       </select>
                     </div>
                     <div class="form-group col-md-3">
-                      <label id="formPagamento">Banco</label> <select class="form-control" id="banco" name="banco"
+                      <label id="bancoLabel">Banco</label> <select class="form-control" id="banco" name="banco"
                         onchange="selectoutroBanco()">
                         <option value="Itau" id="1">Banco Itau</option>
                         <option value="Bradesco" id="2">Banco Bradesco</option>
@@ -167,28 +173,28 @@
                       </select>
                     </div>
                     <div id="divOutroBanco" class="form-group col-md-2">
-                      <label id="jaTemCadastroLabel">Banco:</label> <input type="text" class="form-control"
-                        id="OutroBanco" name="OutroBanco">
+                      <label id="outroBancoLabel">Banco:</label> <input type="text" class="form-control" id="OutroBanco"
+                        name="OutroBanco">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-2">
-                      <label id="codAgencia">Agência</label> <input type="text" class="form-control" id="codAgencia"
-                        name="codAgencia">
+                      <label id="codAgenciaLabel">Agência</label> <input type="text" class="form-control"
+                        id="codAgencia" name="codAgencia">
                     </div>
                     <div class="form-group col-md-2">
-                      <label id="codConta">C.Corrente</label> <input type="text" class="form-control" id="codConta"
+                      <label id="codContaLabel">C.Corrente</label> <input type="text" class="form-control" id="codConta"
                         name="codConta">
                     </div>
                     <div class="form-group col-md-1">
-                      <label id="codDigito">Dígito</label> <input type="text" class="form-control" id="codDigito"
+                      <label id="codDigitoLabel">Dígito</label> <input type="text" class="form-control" id="codDigito"
                         name="codDigito">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label id="categoria">Categoria</label> <select class="form-control" id="categoria"
+                    <label id="categoriaLabel">Categoria</label> <select class="form-control" id="categoria"
                       name="categoria">
                       <option value="produto" id="produto">Produto</option>
                       <option value="servicos" id="servicos">Serviços</option>
@@ -197,8 +203,17 @@
                     </select>
                   </div>
                   <div class="form-group col-md-3">
-                    <label id="segmento">Segmento</label> <input type="text" class="form-control" id="segmento"
+                    <label id="segmentoLabel">Segmento</label> <input type="text" class="form-control" id="segmento"
                       name="segmento">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="inputs">
+                  <br>
+                  <div class="col-md-12">
+                    <input type="submit" value="Enviar" class="btn btn-primary rounded-0 py-2 px-4">
+                    <span class="submitting"></span>
                   </div>
                 </div>
               </div>
@@ -237,26 +252,26 @@
   <script src="js/jquery.validate.min.js"></script>
   <script src="js/main.js"></script>
 
-  <!---SCRIPTS-->
-<script>
-  
-  function formatarCampo(documento) {
-    if (documento.value.length <= 11) {
+  <!---SCRIPTS MANUAIS-->
+  <script>
+
+    function formatarCampo(documento) {
+      if (documento.value.length <= 11) {
         documento.value = mascaraCpf(documento.value);
-    } else {
+      } else {
         documento.value = mascaraCnpj(documento.value);
+      }
     }
-}
-function retirarFormatacao(documento) {
-    documento.value = documento.value.replace(/(\.|\/|\-)/g,"");
-}
-function mascaraCpf(valor) {
-    return valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
-}
-function mascaraCnpj(valor) {
-    return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
-}
-</script>
+    function retirarFormatacao(documento) {
+      documento.value = documento.value.replace(/(\.|\/|\-)/g, "");
+    }
+    function mascaraCpf(valor) {
+      return valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3\-\$4");
+    }
+    function mascaraCnpj(valor) {
+      return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "\$1.\$2.\$3\/\$4\-\$5");
+    }
+  </script>
 </body>
 
 </html>
