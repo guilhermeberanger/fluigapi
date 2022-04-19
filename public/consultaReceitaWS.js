@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-	$("#pessoaJuridica").blur(function () {
+	$("#documento").blur(function () {
 		//Capturando o valor do campo 'pessoaJuridica' e retirando os caracateres especiais, atrelando o valor na URL e realizando a consulta<--
 		$.getJSON("//publica.cnpj.ws/cnpj/" + $("#pessoaJuridica").val().replace(/\D/g, ''), function (dados) {
 
