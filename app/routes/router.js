@@ -27,7 +27,7 @@ TargetAssignee = Matrícula do USER Destino
 FormFields = DataForm Fluig
 */
 //requisição APIFLUIG
-router.post('/produdos', urlencodedParser, async (req, res) => {
+router.post('/', urlencodedParser, async (req, res) => {
     try {
         const data = {
             "targetState": "09",
@@ -58,7 +58,7 @@ router.post('/produdos', urlencodedParser, async (req, res) => {
 });
 
 
-router.post('/fornecedor', urlencodedParser, async (req, res) => {
+router.post('/', urlencodedParser, async (req, res) => {
     try {
         const dataForn = {
             "targetState": "09",
