@@ -31,7 +31,7 @@ router.post('/produtos', urlencodedParser, async (req, res) => {
     try {
         const data = {
             "targetState": "09",
-            "targetAssignee": "945436",
+            "targetAssignee": "12345",
             "subProcessTargetState": 0,
             "comment": "",
             "formFields": {
@@ -62,7 +62,7 @@ router.post('/fornecedor', urlencodedParser, async (req, res) => {
     try {
         const dataForn = {
             "targetState": "11",
-            "targetAssignee": "945436",
+            "targetAssignee": "12345",
             "subProcessTargetState": 0,
             "comment": "",
             "formFields": {
