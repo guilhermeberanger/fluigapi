@@ -27,209 +27,232 @@
   <title>Grupo TB</title>
 </head>
 
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Grupo TB</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="https://tbcadastros.herokuapp.com">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tbcadastros.herokuapp.com/produtos">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="https://tbcadastros.herokuapp.com/fornecedor">Fornecedores</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
 <body>
-
-
   <div class="content">
     <div class="container">
       <div class="row align-items-stretch no-gutters contact-wrap">
         <div class="col-md-8">
           <div class="form h-100">
-            <% if(sucess !=''){ %>
-            <div class="alert alert-success">
-              <strong>Success!</strong> <%= sucess %>
-            </div>
-            <% } %>
-            <h3>CADASTRO FORNECEDORES</h3>
-            <div class="panel panel-primary"></div>
-            <form class="form-role" method="POST" action="https://tbcadastros.herokuapp.com/fornecedor">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label id="nomeSolicitanteLabel">Nome do Solicitante</label> <input type="text" class="form-control"
-                    id="nomeSolicitante" name="nomeSolicitante" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label id="emailSolicitanteLabel">E-mail do Solicitante</label> <input type="email"
-                    class="form-control" id="emailSolicitante" name="emailSolicitante"
-                    placeholder="email@grupotb.com.br" required>
-                </div>
+            <% if(sucess !='' ){ %>
+              <div class="alert alert-success">
+                <strong>Success!</strong>
+                <%= sucess %>
               </div>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label id="razaoSocialLabel">Razão Social</label> <input
-                    type="text" class="form-control" id="razaoSocial"
-                    name="razaoSocial">
-                </div>
-                <div class="form-group col-md-6">
-                  <label id="nomeFantasiaLabel">Nome Fantasia</label> <input
-                    type="text" class="form-control" id="nomeFantasia"
-                    name="nomeFantasia">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-3">
-                  <label id="tipoCadastroLabel">Tipo</label> <select class="form-control" id="tipoCadastro"
-                    name="tipoCadastro">
-                    <option value="0" id="0">Selecione</option>
-                    <option value="Pessoa Juridica" id="Pessoa Juridica">Pessoa
-                      Física</option>
-                    <option value="Pessoa Fisica" id="Pessoa Fisica">Pessoa
-                      Juridica</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-2">
-                  <label id="reembolsoLabel">Reembolso</label> <select class="form-control" id="reembolso"
-                    name="reembolso" onchange="selectDadosBancarios()">
-                    <option value="0" id="0">SELECIONE</option>
-                    <option value="SIM" id="1">SIM</option>
-                    <option value="NÃO" id="2">NÃO</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-4">
-                  <label id="docNumerolabel">DOC. Nº</label> <input type="text" class="form-control" id="documento"
-                    name="documento" onblur="formatarCampo(this);">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-8">
-                  <label id="enderecoCompletoLabel">Endereço Completo</label> <input type="text" class="form-control"
-                    id="enderecoCompleto" name="enderecoCompleto">
-                </div>
-                <div class="form-group col-md-3">
-                  <label id="bairroLabel">Bairro</label> <input type="text" class="form-control" id="bairro"
-                    name="bairro">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-3">
-                  <label id="estadoLabel">Estado</label> <input type="text" class="form-control" id="estado"
-                    name="estado">
-                </div>
-                <div class="form-group col-md-3">
-                  <label id="cidadeLabel">Cidade</label> <input type="text" class="form-control" id="cidade"
-                    name="cidade" >
-                </div>
-
-                <div class="form-group col-md-3">
-                  <label id="cepLabel">CEP</label> <input type="text" class="form-control" id="cep" name="cep">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-1">
-                  <label id="dddLabel">DDD</label> <input type="text" class="form-control" id="ddd" name="ddd">
-                </div>
-                <div class="form-group col-md-3">
-                  <label id="telefoneLabel">Telefone</label> <input type="text" class="form-control" id="telefone"
-                    name="telefone">
-                </div>
-                <div class="form-group col-md-3">
-                  <label id="inscricaoMunicipalLabel">Insc Mun.</label> <input type="text" class="form-control"
-                    id="inscricaoMunicipal" name="inscricaoMunicipal">
-                </div>
-                <div class="form-group col-md-4">
-                  <label id="inscricaoEstadualLabel">Insc Est.</label> <input type="text" class="form-control"
-                    id="inscricaoEstadual" name="inscricaoEstadual">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-4">
-                  <label id="emailFornecedor">Email Fornecedor</label> <input type="email" class="form-control"
-                    id="emailFornecedor" name="emailFornecedor" placeholder="email@exemplo.com">
-                </div>
-                <div class="form-group col-md-3">
-                  <label id="contatoLabel">Contato</label> <input type="text" class="form-control" id="contato"
-                    name="contato">
-                </div>
-                <div class="form-group col-md-2">
-                  <label id="departamentoLabel">Depart.</label> <input type="text" class="form-control"
-                    id="departamento" name="departamento">
-                </div>
-                <div class="form-group col-md-2">
-                  <label id="cotacaoLabel">Cotação?</label> <select class="form-control" id="cotacao" name="cotacao">
-                    <option value="SIM" id="simCota">SIM</option>
-                    <option value="NÃO" id="naoCota">NÃO</option>
-                  </select>
-                </div>
-              </div>
-              <div class="panel-body">
-                <h3>DADOS BANCÁRIOS</h3>
-                <div id="dadosBancarios">
+              <% } %>
+                <h3>CADASTRO FORNECEDORES</h3>
+                <div class="panel panel-primary"></div>
+                <form class="form-role" method="POST" action="https://tbcadastros.herokuapp.com/fornecedor">
                   <div class="row">
-                    <div class="form-group col-md-4">
-                      <label id="formPagamento">Forma de Pagamento</label> <select class="form-control"
-                        id="formPagamento" name="formPagamento">
-                        <option value="Boleto Outros Bancos" id="boletoOutrosBancos">Boleto
-                          Outros Bancos</option>
-                        <option value="Boleto Banco Itau" id="boletoBancoItau">Boleto
-                          Banco itau</option>
-                        <option value="Transf. Outros Bancos" id="transferenciaOutrosBancos">
-                          Transferência Outros
-                          Bancos</option>
-                        <option value="Transf. Banco Itau" id="transferenciaBancoItau">Transferência
-                          Banco Itau</option>
+                    <div class="form-group col-md-6">
+                      <label id="nomeSolicitanteLabel">Nome do Solicitante</label> <input type="text"
+                        class="form-control" id="nomeSolicitante" name="nomeSolicitante" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label id="emailSolicitanteLabel">E-mail do Solicitante</label> <input type="email"
+                        class="form-control" id="emailSolicitante" name="emailSolicitante"
+                        placeholder="email@grupotb.com.br" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label id="razaoSocialLabel">Razão Social</label> <input type="text" class="form-control"
+                        id="razaoSocial" name="razaoSocial">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label id="nomeFantasiaLabel">Nome Fantasia</label> <input type="text" class="form-control"
+                        id="nomeFantasia" name="nomeFantasia">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label id="tipoCadastroLabel">Tipo</label> <select class="form-control" id="tipoCadastro"
+                        name="tipoCadastro">
+                        <option value="0" id="0">Selecione</option>
+                        <option value="Pessoa Juridica" id="Pessoa Juridica">Pessoa
+                          Física</option>
+                        <option value="Pessoa Fisica" id="Pessoa Fisica">Pessoa
+                          Juridica</option>
                       </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label id="reembolsoLabel">Reembolso</label> <select class="form-control" id="reembolso"
+                        name="reembolso" onchange="selectDadosBancarios()">
+                        <option value="0" id="0">SELECIONE</option>
+                        <option value="SIM" id="1">SIM</option>
+                        <option value="NÃO" id="2">NÃO</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label id="docNumerolabel">DOC. Nº</label> <input type="text" class="form-control" id="documento"
+                        name="documento" onblur="formatarCampo(this);">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-8">
+                      <label id="enderecoCompletoLabel">Endereço Completo</label> <input type="text"
+                        class="form-control" id="enderecoCompleto" name="enderecoCompleto">
                     </div>
                     <div class="form-group col-md-3">
-                      <label id="bancoLabel">Banco</label> <select class="form-control" id="banco" name="banco"
-                        onchange="selectoutroBanco()">
-                        <option value="Itau" id="1">Banco Itau</option>
-                        <option value="Bradesco" id="2">Banco Bradesco</option>
-                        <option value="Brasil" id="3">Banco do Brasil</option>
-                        <option value="Santander" id="4">Banco Santander</option>
-                        <option value="Caixa" id="5">Caixa Economica Federal</option>
-                        <option value="Safra" id="6">Banco Safra</option>
-                        <option value="Inter" id="7">Banco Inter</option>
-                        <option value="Nubank" id="8">Nubank</option>
-                        <option value="Sicoob" id="9">Banco Sicoob</option>
-                        <option value="Outro" id="10">Outro</option>
-                      </select>
-                    </div>
-                    <div id="divOutroBanco" class="form-group col-md-2">
-                      <label id="outroBancoLabel">Banco:</label> <input type="text" class="form-control" id="OutroBanco"
-                        name="OutroBanco">
+                      <label id="bairroLabel">Bairro</label> <input type="text" class="form-control" id="bairro"
+                        name="bairro">
                     </div>
                   </div>
                   <div class="row">
-                    <div class="form-group col-md-2">
-                      <label id="codAgenciaLabel">Agência</label> <input type="text" class="form-control"
-                        id="codAgencia" name="codAgencia">
+                    <div class="form-group col-md-3">
+                      <label id="estadoLabel">Estado</label> <input type="text" class="form-control" id="estado"
+                        name="estado">
                     </div>
-                    <div class="form-group col-md-2">
-                      <label id="codContaLabel">C.Corrente</label> <input type="text" class="form-control" id="codConta"
-                        name="codConta">
+                    <div class="form-group col-md-3">
+                      <label id="cidadeLabel">Cidade</label> <input type="text" class="form-control" id="cidade"
+                        name="cidade">
                     </div>
+
+                    <div class="form-group col-md-3">
+                      <label id="cepLabel">CEP</label> <input type="text" class="form-control" id="cep" name="cep">
+                    </div>
+                  </div>
+                  <div class="row">
                     <div class="form-group col-md-1">
-                      <label id="codDigitoLabel">Dígito</label> <input type="text" class="form-control" id="codDigito"
-                        name="codDigito">
+                      <label id="dddLabel">DDD</label> <input type="text" class="form-control" id="ddd" name="ddd">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label id="telefoneLabel">Telefone</label> <input type="text" class="form-control" id="telefone"
+                        name="telefone">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label id="inscricaoMunicipalLabel">Insc Mun.</label> <input type="text" class="form-control"
+                        id="inscricaoMunicipal" name="inscricaoMunicipal">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label id="inscricaoEstadualLabel">Insc Est.</label> <input type="text" class="form-control"
+                        id="inscricaoEstadual" name="inscricaoEstadual">
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="form-group col-md-4">
-                    <label id="categoriaLabel">Categoria</label> <select class="form-control" id="categoria"
-                      name="categoria">
-                      <option value="produto" id="produto">Produto</option>
-                      <option value="servicos" id="servicos">Serviços</option>
-                      <option value="produtoServico" id="produtoServico">Produtos
-                        e Serviços</option>
-                    </select>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label id="emailFornecedor">Email Fornecedor</label> <input type="email" class="form-control"
+                        id="emailFornecedor" name="emailFornecedor" placeholder="email@exemplo.com">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label id="contatoLabel">Contato</label> <input type="text" class="form-control" id="contato"
+                        name="contato">
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label id="departamentoLabel">Depart.</label> <input type="text" class="form-control"
+                        id="departamento" name="departamento">
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label id="cotacaoLabel">Cotação?</label> <select class="form-control" id="cotacao"
+                        name="cotacao">
+                        <option value="SIM" id="simCota">SIM</option>
+                        <option value="NÃO" id="naoCota">NÃO</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="form-group col-md-3">
-                    <label id="segmentoLabel">Segmento</label> <input type="text" class="form-control" id="segmento"
-                      name="segmento">
+                  <div class="panel-body">
+                    <h3>DADOS BANCÁRIOS</h3>
+                    <div id="dadosBancarios">
+                      <div class="row">
+                        <div class="form-group col-md-4">
+                          <label id="formPagamento">Forma de Pagamento</label> <select class="form-control"
+                            id="formPagamento" name="formPagamento">
+                            <option value="Boleto Outros Bancos" id="boletoOutrosBancos">Boleto
+                              Outros Bancos</option>
+                            <option value="Boleto Banco Itau" id="boletoBancoItau">Boleto
+                              Banco itau</option>
+                            <option value="Transf. Outros Bancos" id="transferenciaOutrosBancos">
+                              Transferência Outros
+                              Bancos</option>
+                            <option value="Transf. Banco Itau" id="transferenciaBancoItau">Transferência
+                              Banco Itau</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                          <label id="bancoLabel">Banco</label> <select class="form-control" id="banco" name="banco"
+                            onchange="selectoutroBanco()">
+                            <option value="Itau" id="1">Banco Itau</option>
+                            <option value="Bradesco" id="2">Banco Bradesco</option>
+                            <option value="Brasil" id="3">Banco do Brasil</option>
+                            <option value="Santander" id="4">Banco Santander</option>
+                            <option value="Caixa" id="5">Caixa Economica Federal</option>
+                            <option value="Safra" id="6">Banco Safra</option>
+                            <option value="Inter" id="7">Banco Inter</option>
+                            <option value="Nubank" id="8">Nubank</option>
+                            <option value="Sicoob" id="9">Banco Sicoob</option>
+                            <option value="Outro" id="10">Outro</option>
+                          </select>
+                        </div>
+                        <div id="divOutroBanco" class="form-group col-md-2">
+                          <label id="outroBancoLabel">Banco:</label> <input type="text" class="form-control"
+                            id="OutroBanco" name="OutroBanco">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-2">
+                          <label id="codAgenciaLabel">Agência</label> <input type="text" class="form-control"
+                            id="codAgencia" name="codAgencia">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label id="codContaLabel">C.Corrente</label> <input type="text" class="form-control"
+                            id="codConta" name="codConta">
+                        </div>
+                        <div class="form-group col-md-1">
+                          <label id="codDigitoLabel">Dígito</label> <input type="text" class="form-control"
+                            id="codDigito" name="codDigito">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-4">
+                        <label id="categoriaLabel">Categoria</label> <select class="form-control" id="categoria"
+                          name="categoria">
+                          <option value="produto" id="produto">Produto</option>
+                          <option value="servicos" id="servicos">Serviços</option>
+                          <option value="produtoServico" id="produtoServico">Produtos
+                            e Serviços</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label id="segmentoLabel">Segmento</label> <input type="text" class="form-control" id="segmento"
+                          name="segmento">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="inputs">
-                  <br>
-                  <div class="col-md-12">
-                    <input type="submit" value="Enviar" class="btn btn-primary rounded-0 py-2 px-4">
-                    <span class="submitting"></span>
+                  <div class="row">
+                    <div class="inputs">
+                      <br>
+                      <div class="col-md-12">
+                        <input type="submit" value="Enviar" class="btn btn-primary rounded-0 py-2 px-4">
+                        <span class="submitting"></span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </form>
+                </form>
           </div>
 
         </div>
