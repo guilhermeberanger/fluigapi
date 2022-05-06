@@ -107,7 +107,7 @@ router.post('/fornecedor', urlencodedParser, async (req, res) => {
         const processoFornecedor = `SolicitarCadastro`
         const login = await api(processoFornecedor, dataForn, "POST")
         const response = login.processInstanceId
-        res.render('fornecedor', { sucess: `Cadastro Solicitado: ${response}` })
+        res.render('fornecedor', { sucess: `Baixa Solicitada: ${response}` })
     } catch (error) {
 
     }
