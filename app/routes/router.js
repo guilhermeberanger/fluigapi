@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path')
+const consultaDetran = require('../configs/configDetran')
 const api = require('../configs/config');
 const { urlencoded } = require('express');
+require('dotenv').config()
 
 //configuração URL enconded
 const urlencodedParser = express.urlencoded({ extended: false })
@@ -20,8 +21,15 @@ router.get('/fornecedor', (req, res) => {
     res.render('fornecedor', { sucess: '' })
 })
 
+router.get('/frotas', (req, res) => {
+    res.render('frotas', { sucess: '' })
+})
+router.get('/consulta', (req, res) => {
+    res.render('consulta', { restricao: '', site: '' })
+})
 
-/*
+
+/**
 Criação do Objeto FLUIG: TargetState = Numero da atividade no fluxo;
 TargetAssignee = Matrícula do USER Destino
 FormFields = DataForm Fluig
@@ -102,6 +110,82 @@ router.post('/fornecedor', urlencodedParser, async (req, res) => {
         res.render('fornecedor', { sucess: `Cadastro Solicitado: ${response}` })
     } catch (error) {
 
+    }
+})
+
+router.post('/frotas', urlencodedParser, async (req, res) => {
+    try {
+
+        const LOGIN = process.env.CPF
+        const SENHA = process.env.SENHA
+        const TOKEN_DETRAN = process.env.TOKEN_DETRAN
+        const bodyDetran = {
+
+            "uf": req.body.ufPlaca,
+            "placa": req.body.placa,
+            "renavam": req.body.renavam,
+            "chassi": req.body.chassi,
+            "login_cpf": LOGIN,
+            "login_senha": SENHA,
+            "token": TOKEN_DETRAN,
+            "timeout": 300
+        }
+        const data = await consultaDetran(bodyDetran, "POST")
+        const objRestri = data.data[0].restricoes
+        const objConsulta = data.site_receipts
+
+        const dataFrotas = {
+            "targetState": "3",
+            "targetAssignee": "945436",
+            "subProcessTargetState": 0,
+            "comment": "",
+            "formFields": {
+                "nomeSolicitante": req.body.nomeSolicitante,
+                "emailSolicitante": req.body.emailSolicitante,
+                "centroCusto": req.body.centroCusto,
+                "codFrota": req.body.codFrota,
+                "motivoBaixa": req.body.motivoBaixa,
+                "ufPlaca": req.body.ufPlaca,
+                "placa": req.body.placa,
+                "renavam": req.body.renavam,
+                "chassi": req.body.chassi,
+                "restricao": JSON.stringify(objRestri).replace(/[^a-z0-9]/gi, ' '),
+                "site": JSON.stringify(objConsulta)
+            }
+        }
+
+        console.log('objeto enviado ', dataFrotas)
+        const processoBaixa = `BaixarVeiculo`
+        const login = await api(processoBaixa, dataFrotas, "POST")
+        const datafLUIG = login.processInstanceId
+        res.render('frotas', { sucess: `Cadastro Solicitado: ${datafLUIG}` })
+
+    } catch (error) {
+        console.log('Erro: ', error)
+    }
+})
+
+router.post('/consulta', urlencodedParser, async (req, res) => {
+    try {
+        const LOGIN = process.env.CPF
+        const SENHA = process.env.SENHA
+        const TOKEN_DETRAN = process.env.TOKEN_DETRAN
+        const bodyDetran = {
+            "uf": req.body.ufPlaca,
+            "placa": req.body.placa,
+            "renavam": req.body.renavam,
+            "chassi": req.body.chassi,
+            "login_cpf": LOGIN,
+            "login_senha": SENHA,
+            "token": TOKEN_DETRAN,
+            "timeout": 300
+        }
+        const data = await consultaDetran(bodyDetran, "POST")
+        const response = JSON.stringify(data.data[0].restricoes).replace(/[^a-z0-9]/gi, ' ')
+        const objConsulta = JSON.stringify(data.site_receipts)
+        res.render('consulta', { restricao: `${response}`, site: `${objConsulta}` })
+    } catch (error) {
+        console.error('Error', error)
     }
 })
 module.exports = router

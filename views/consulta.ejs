@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Adicionando JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="consultaReceitaWS.js"></script>
+    <script type="text/javascript" src="selectDinamicoForn.js"></script>
+    <link type="text/javascript" href="masks.js">
+    <!--===============================================================================================-->
+
+    <title>Grupo TB</title>
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Grupo TB</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="https://tbcadastros.herokuapp.com">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Cadastros
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="https://tbcadastros.herokuapp.com/fornecedor">Fornecedores</a></li>
+                <li><a class="dropdown-item" href="https://tbcadastros.herokuapp.com/produtos">Produtos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Frotas
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="https://tbcadastros.herokuapp.com/frotas">Solicitação Baixa</a></li>
+                <li><a class="dropdown-item" href="https://tbcadastros.herokuapp.com/consulta">Consulta Detran</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="row align-items-stretch no-gutters contact-wrap">
+                <div class="col-md-8">
+                    <div class="form h-100">
+                        <div class="panel panel-primary"></div>
+                        <form class="form-role" method="POST" action="http://172.16.32.182:3000/consulta">
+                            <div class="row">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label>Placa</label>
+                                            <input type="text" class="form-control" id="placa"
+                                                onblur="mascaraPlaca(this)" name="placa" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Renavam</label>
+                                            <input type="text" class="form-control" id="renavam" name="renavam"
+                                                required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Chassi</label>
+                                            <input type="text" class="form-control" id="chassi" name="chassi" required>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>Uf Emplac.</label> <select type="text" class="form-control"
+                                                id="ufPlaca" name="ufPlaca" required>
+                                                <option>Selecione</option>
+                                                <option value="SP">SP</option>
+                                                <option value="TO">TO</option>
+                                                <option value="RO">RO</option>
+                                                <option value="AC">AC</option>
+                                                <option value="AM">AM</option>
+                                                <option value="RJ">RJ</option>
+                                                <option value="PR">PR</option>
+                                                <option value="MA">MA</option>
+                                            </select required>
+                                        </div>
+                                    </div>
+                                    <% if(restricao !='' ){ %>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label>Restrições</label>
+                                                <input type="text" class="form-control" value="<%= restricao %>"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label>Site</label>
+                                                <input type="text" class="form-control" value="<%= site %>" required>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                </div>
+
+                                <div class="row">
+                                    <div class="inputs">
+                                        <br>
+                                        <div class="col-md-12">
+                                            <input type="submit" value="Consultar"
+                                                class="btn btn-primary rounded-0 py-2 px-4">
+                                            <span class="submitting"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info h-100">
+                        <h3>Informações Gerais</h3>
+                        <p class="mb-5"></p>Prazo para Efetivação da baixa: 24hrs</p>
+                        <ul class="list-unstyled">
+                            <li class="d-flex">
+                                <span class="wrap-icon icon-users mr-3"></span>
+                                <span class="text">Departamento de Veículos</span>
+                            </li>
+                            <li class="d-flex">
+                                <span class="wrap-icon icon-phone mr-3"></span>
+                                <span class="text">Ramal: 634</span>
+                            </li>
+                            <li class="d-flex">
+                                <span class="wrap-icon icon-envelope mr-3"></span>
+                                <span class="text">dv@grupotb.com.br</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guia de Estilos -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+
+        function mascaraPlaca(placa) {
+            return placa.value = placa.value.replace(/-/, '')
+        }
+
+    </script>
+
+</body>
+
+</html>
