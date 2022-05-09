@@ -136,7 +136,7 @@ router.post('/frotas', urlencodedParser, async (req, res) => {
 
         const dataFrotas = {
             "targetState": "3",
-            "targetAssignee": "945436",
+            "targetAssignee": "rarisson.santos",
             "subProcessTargetState": 0,
             "comment": "",
             "formFields": {
@@ -153,8 +153,6 @@ router.post('/frotas', urlencodedParser, async (req, res) => {
                 "site": JSON.stringify(objConsulta)
             }
         }
-
-        console.log('objeto enviado ', dataFrotas)
         const processoBaixa = `BaixarVeiculo`
         const login = await api(processoBaixa, dataFrotas, "POST")
         const datafLUIG = login.processInstanceId
