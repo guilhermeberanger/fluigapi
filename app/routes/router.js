@@ -161,7 +161,7 @@ router.post('/frotas', urlencodedParser, async (req, res) => {
         if (res.code == 200) {
             res.render('frotas', { sucess: `Cadastro Solicitado: ${datafLUIG}` })
 
-        } else if (response.code >= 600 && response.code <= 799) {
+        } else if (res.code >= 600 && res.code <= 799) {
             res.render('frotas', { fail: `Requisição com Falha: ${mensagem} ` })
             const mensagem = "Resultado sem sucesso. Leia para saber mais:\n";
             mensagem += `Código: ${res['code']} (${res['code_message']})\n`;
@@ -195,9 +195,9 @@ router.post('/consulta', urlencodedParser, async (req, res) => {
         if (res.code == 200) {
             res.render('consulta', { restricao: `${response}`, site: `${objConsulta}` })
 
-        } else if (response.code >= 600 && response.code <= 799) {
+        } else if (res.code >= 600 && res.code <= 799) {
             res.render('frotas', { fail: `Requisição com Falha: ${mensagem} ` })
-            
+
             const mensagem = "Resultado sem sucesso. Leia para saber mais:\n";
             mensagem += `Código: ${res['code']} (${res['code_message']})\n`;
 
