@@ -22,10 +22,10 @@ router.get('/fornecedor', (req, res) => {
 })
 
 router.get('/frotas', (req, res) => {
-    res.render('frotas', { sucess: '' })
+    res.render('frotas', { sucess: '', fail: '' })
 })
 router.get('/consulta', (req, res) => {
-    res.render('consulta', { restricao: '', site: '' })
+    res.render('consulta', { restricao: '', site: '', fail: '' })
 })
 
 
@@ -158,7 +158,15 @@ router.post('/frotas', urlencodedParser, async (req, res) => {
         const processoBaixa = `BaixarVeiculo`
         const login = await api(processoBaixa, dataFrotas, "POST")
         const datafLUIG = login.processInstanceId
-        res.render('frotas', { sucess: `Cadastro Solicitado: ${datafLUIG}` })
+        if (res.code == 200) {
+            res.render('frotas', { sucess: `Cadastro Solicitado: ${datafLUIG}` })
+
+        } else if (response.code >= 600 && response.code <= 799) {
+            res.render('frotas', { fail: `Requisição com Falha: ${mensagem} ` })
+            const mensagem = "Resultado sem sucesso. Leia para saber mais:\n";
+            mensagem += `Código: ${res['code']} (${res['code_message']})\n`;
+
+        }
 
     } catch (error) {
         console.log('Erro: ', error)
@@ -183,7 +191,18 @@ router.post('/consulta', urlencodedParser, async (req, res) => {
         const data = await consultaDetran(bodyDetran, "POST")
         const response = JSON.stringify(data.data[0].restricoes).replace(/[^a-z0-9]/gi, ' ')
         const objConsulta = JSON.stringify(data.site_receipts)
-        res.render('consulta', { restricao: `${response}`, site: `${objConsulta}` })
+
+        if (res.code == 200) {
+            res.render('consulta', { restricao: `${response}`, site: `${objConsulta}` })
+
+        } else if (response.code >= 600 && response.code <= 799) {
+            res.render('frotas', { fail: `Requisição com Falha: ${mensagem} ` })
+            
+            const mensagem = "Resultado sem sucesso. Leia para saber mais:\n";
+            mensagem += `Código: ${res['code']} (${res['code_message']})\n`;
+
+        }
+
     } catch (error) {
         console.error('Error', error)
     }
