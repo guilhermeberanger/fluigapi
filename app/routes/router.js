@@ -22,10 +22,10 @@ router.get('/fornecedor', (req, res) => {
 })
 
 router.get('/frotas', (req, res) => {
-    res.render('frotas', { sucess: '', fail: '' })
+    res.render('frotas', { sucess: ''})
 })
 router.get('/consulta', (req, res) => {
-    res.render('consulta', { restricao: '', site: '', fail: '' })
+    res.render('consulta', { restricao: '', site: ''})
 })
 
 
@@ -136,7 +136,7 @@ router.post('/frotas', urlencodedParser, async (req, res) => {
 
         const dataFrotas = {
             "targetState": "3",
-            "targetAssignee": "rarisson.santos",
+            "targetAssignee": "945436",
             "subProcessTargetState": 0,
             "comment": "",
             "formFields": {
