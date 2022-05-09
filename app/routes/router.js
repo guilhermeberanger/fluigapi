@@ -158,16 +158,7 @@ router.post('/frotas', urlencodedParser, async (req, res) => {
         const processoBaixa = `BaixarVeiculo`
         const login = await api(processoBaixa, dataFrotas, "POST")
         const datafLUIG = login.processInstanceId
-        if (res.code == 200) {
-            res.render('frotas', { sucess: `Cadastro Solicitado: ${datafLUIG}` })
-
-        } else if (res.code >= 600 && res.code <= 799) {
-            res.render('frotas', { fail: `Requisição com Falha: ${mensagem} ` })
-            const mensagem = "Resultado sem sucesso. Leia para saber mais:\n";
-            mensagem += `Código: ${res['code']} (${res['code_message']})\n`;
-
-        }
-
+        res.render('frotas', { sucess: `Cadastro Solicitado: ${datafLUIG}` })
     } catch (error) {
         console.log('Erro: ', error)
     }
@@ -191,17 +182,7 @@ router.post('/consulta', urlencodedParser, async (req, res) => {
         const data = await consultaDetran(bodyDetran, "POST")
         const response = JSON.stringify(data.data[0].restricoes).replace(/[^a-z0-9]/gi, ' ')
         const objConsulta = JSON.stringify(data.site_receipts)
-
-        if (res.code == 200) {
-            res.render('consulta', { restricao: `${response}`, site: `${objConsulta}` })
-
-        } else if (res.code >= 600 && res.code <= 799) {
-            res.render('frotas', { fail: `Requisição com Falha: ${mensagem} ` })
-
-            const mensagem = "Resultado sem sucesso. Leia para saber mais:\n";
-            mensagem += `Código: ${res['code']} (${res['code_message']})\n`;
-
-        }
+        res.render('consulta', { restricao: `${response}`, site: `${objConsulta}` })
 
     } catch (error) {
         console.error('Error', error)
