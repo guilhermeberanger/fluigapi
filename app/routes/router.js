@@ -38,7 +38,7 @@ FormFields = DataForm Fluig
 router.post('/produtos', urlencodedParser, async (req, res) => {
     try {
         const data = {
-            "targetState": "02",
+            "targetState": "09",
             "targetAssignee": "12345",
             "subProcessTargetState": 0,
             "comment": "",
