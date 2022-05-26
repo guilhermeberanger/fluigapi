@@ -55,7 +55,7 @@ router.post('/produtos', urlencodedParser, async (req, res) => {
                 "subGrupo": req.body.subGrupo
             }
         }
-        const processoProduto = `CadastroProduto`
+        const processoProduto = `01`
         const login = await api(processoProduto, data, "POST")
         const response = login.processInstanceId
         res.render('produtos', { sucess: `Cadastro Solicitado: ${response}` })
