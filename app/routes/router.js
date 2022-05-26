@@ -38,7 +38,7 @@ FormFields = DataForm Fluig
 router.post('/produtos', urlencodedParser, async (req, res) => {
     try {
         const data = {
-            "targetState": "09",
+            "targetState": "03",
             "targetAssignee": "12345",
             "subProcessTargetState": 0,
             "comment": "",
@@ -55,7 +55,7 @@ router.post('/produtos', urlencodedParser, async (req, res) => {
                 "subGrupo": req.body.subGrupo
             }
         }
-        const processoProduto = `01`
+        const processoProduto = "0000000005"
         const login = await api(processoProduto, data, "POST")
         const response = login.processInstanceId
         res.render('produtos', { sucess: `Cadastro Solicitado: ${response}` })
