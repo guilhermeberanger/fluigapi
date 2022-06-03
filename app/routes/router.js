@@ -107,7 +107,7 @@ router.post('/fornecedor', urlencodedParser, async (req, res) => {
         const processoFornecedor = `SolicitarCadastro`
         const login = await api(processoFornecedor, dataForn, "POST")
         const response = login.processInstanceId
-        res.render('fornecedor', { sucess: `Baixa Solicitada: ${response}` })
+        res.render('fornecedor', { sucess: `Cadastro Solicitado: ${response}` })
     } catch (error) {
 
     }
@@ -156,7 +156,7 @@ router.post('/frotas', urlencodedParser, async (req, res) => {
         const processoBaixa = `BaixarVeiculo`
         const login = await api(processoBaixa, dataFrotas, "POST")
         const datafLUIG = login.processInstanceId
-        res.render('frotas', { sucess: `Cadastro Solicitado: ${datafLUIG}` })
+        res.render('frotas', { sucess: `Baixa Solicitada: ${datafLUIG}` })
     } catch (error) {
         console.log('Erro: ', error)
     }
